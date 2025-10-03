@@ -1,0 +1,135 @@
+GARBAGE REPORTING SYSTEM - COMPLETE EXPLANATION
+================================================
+
+1. SYSTEM ARCHITECTURE
+----------------------
+This is a Java Swing application with SQLite database backend that allows users to report garbage sightings and admins to manage these reports.
+
+Architecture Layers:
+- Presentation Layer (Java Swing UI)
+- Service Layer (Business Logic)
+- Repository Layer (Database Operations)
+- Database Layer (SQLite)
+
+2. DATABASE STRUCTURE
+---------------------
+The system uses SQLite with three main tables:
+
+USERS Table:
+- user_id (VARCHAR) - Randomly generated user identifier
+- name (VARCHAR) - User's full name
+- email (VARCHAR) - User's email address (unique)
+- password (VARCHAR) - User's password (plaintext for demo purposes)
+- address (TEXT) - User's physical address
+
+REPORTS Table:
+- report_id (INTEGER) - Auto-incrementing primary key
+- user_id (VARCHAR) - Links to the user who created the report
+- waste_address (TEXT) - Location where waste was spotted
+- type_id (INTEGER) - Type of waste (foreign key to garbage_types)
+- description (TEXT) - Additional details about the waste
+- status (VARCHAR) - Current status (pending/done)
+- report_date (TIMESTAMP) - When the report was created
+
+GARBAGE_TYPES Table:
+- type_id (INTEGER) - Primary key
+- type_name (VARCHAR) - Name of waste type
+
+ADMIN Table (for admin authentication):
+- admin_id (VARCHAR) - Admin identifier
+- username (VARCHAR) - Admin username
+- password (VARCHAR) - Admin password
+
+3. KEY JAVA CLASSES
+-------------------
+
+MODEL CLASSES (Data Representation):
+- User.java: Represents system users with properties and getters/setters
+- Admin.java: Represents admin users
+- GarbageType.java: Defines types of garbage
+- Report.java: Represents waste reports
+- DatabaseConnection.java: Manages database connections
+
+REPOSITORY CLASSES (Database Operations):
+- UserRepository.java: Handles user CRUD operations
+- ReportRepository.java: Manages report operations
+- GarbageTypeRepository.java: Handles waste type data
+- AdminRepository.java: Manages admin authentication
+
+SERVICE CLASSES (Business Logic):
+- UserService.java: User registration and login logic
+- ReportService.java: Report management logic
+- GarbageTypeService.java: Waste type operations
+- AdminService.java: Admin authentication logic
+
+UI CLASSES (Swing Interfaces):
+- LoginFrame.java: User/Admin login screen
+- RegistrationFrame.java: New user registration form
+- UserDashboardFrame.java: Main user interface
+- AdminDashboardFrame.java: Admin management interface
+- ReportFrame.java: Waste reporting form
+- Main.java: Application entry point
+
+4. SWING COMPONENTS USED
+------------------------
+- JFrame: Main application windows
+- JPanel: Container for organizing components
+- JTextField: Single-line text input
+- JPasswordField: Secure password input
+- JTextArea: Multi-line text input
+- JButton: Clickable buttons
+- JTable: Data display in tabular format
+- JComboBox: Dropdown selection lists
+- JLabel: Text labels
+- JScrollPane: Scrollable containers
+- JOptionPane: Dialog boxes for messages
+
+Layout Managers:
+- BorderLayout: Divides container into five regions
+- GridBagLayout: Flexible grid-based layout
+- FlowLayout: Simple left-to-right component flow
+
+5. SQL OPERATIONS
+-----------------
+The system uses prepared statements for security:
+- INSERT: Adding new users, reports
+- SELECT: Retrieving user data, reports
+- UPDATE: Modifying report statuses
+- DELETE: Removing reports
+
+6. SECURITY NOTES
+-----------------
+- Passwords are stored in plaintext (for demo only)
+- In production, use password hashing with salt
+- SQL injection prevented using prepared statements
+- Input validation implemented in UI forms
+
+7. DEFAULT CREDENTIALS
+----------------------
+Admin Account:
+- Username: admin
+- Password: admin123
+
+User Accounts:
+- Created during registration with random user IDs
+- Users receive their ID after registration
+
+8. COMPILATION AND EXECUTION
+----------------------------
+Compile: javac -cp ".;lib/sqlite-jdbc-3.36.0.3.jar" src/ui/Main.java
+Run: java -cp ".;lib/sqlite-jdbc-3.36.0.3.jar;src" ui.Main
+
+9. TROUBLESHOOTING
+------------------
+Common issues:
+- ClassNotFoundException: JDBC driver missing from classpath
+- SQLException: Database file not writable
+- UI issues: Java version compatibility
+
+10. EXTENSION IDEAS
+-------------------
+- Email notifications
+- GPS coordinates for waste locations
+- Image upload capability
+- Mobile application version
+- Web interface alternative
