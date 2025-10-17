@@ -118,6 +118,20 @@
             "user_id": "USR9892",
             "name": "ans",
             "email": "jdsuhdkj"
+        },
+        {
+            "password": "1234",
+            "address": "asdkhfdkhfkefh",
+            "user_id": "USR7690",
+            "name": "Adil",
+            "email": "Adil@gmail.com"
+        },
+        {
+            "password": "1234",
+            "address": "adssfgssf",
+            "user_id": "USR6537",
+            "name": "hlo",
+            "email": "werrr"
         }
     ],
     "garbage_types": [

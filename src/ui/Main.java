@@ -92,7 +92,9 @@ public class Main {
     }
     
     private static void openRegistrationFrame() {
-        RegistrationFrame registrationFrame = new RegistrationFrame(null);
+        // Create login frame first and pass it to registration frame
+        LoginFrame loginFrame = new LoginFrame();
+        RegistrationFrame registrationFrame = new RegistrationFrame(loginFrame);
         registrationFrame.setVisible(true);
     }
 }

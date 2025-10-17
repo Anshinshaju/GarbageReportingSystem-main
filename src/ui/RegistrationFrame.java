@@ -94,7 +94,7 @@ public class RegistrationFrame extends JFrame {
         btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                goBackToLogin();
             }
         });
     }
@@ -133,9 +133,19 @@ public class RegistrationFrame extends JFrame {
             JOptionPane.showMessageDialog(this, 
                 "Registration successful! Your User ID is: " + userId + "\nPlease use this ID to login.", 
                 "Success", JOptionPane.INFORMATION_MESSAGE);
-            dispose();
+            goBackToLogin();
         } else {
             JOptionPane.showMessageDialog(this, "Registration failed", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void goBackToLogin() {
+        dispose();
+        if (loginFrame != null) {
+            loginFrame.setVisible(true);
+        } else {
+            // If loginFrame is null, go back to welcome page
+            Main.createAndShowWelcomePage();
         }
     }
     

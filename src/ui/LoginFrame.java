@@ -157,9 +157,9 @@ public class LoginFrame extends JFrame {
         }
     }
     
-    private void goBackToWelcome() {
+    // FIXED: Changed from private to public
+    public void goBackToWelcome() {
         dispose();
-        // FIXED: Now calling the public method
         Main.createAndShowWelcomePage();
     }
     

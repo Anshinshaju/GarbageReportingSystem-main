@@ -94,7 +94,7 @@ echo ----------------------
 echo.
 echo The script is now paused. If you see this, compilation was successful.
 echo Press any key to attempt to launch the Java application...
-pause
+
 
 java -cp "%CLASSPATH%" %MAIN_CLASS%
 echo.
@@ -128,4 +128,3 @@ if %errorlevel% neq 0 (
 endlocal
 echo.
 echo Script finished.
-pause
